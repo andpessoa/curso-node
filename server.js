@@ -5,7 +5,7 @@ const debug = require('debug')('nodestr:server');
 const express =  require('express'); 
 
 const app =  express();
-const port =  normalizePort(process.env.PORT || '3000');
+const port =  normalizePort(process.env.PORT || '3000'); //process.env.PORT é uma função do Microsoft Azure
 app.set('port', port);
 
 const server = http.createServer(app);
