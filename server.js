@@ -37,3 +37,26 @@ function normalizePort(val){
 
     return false;
 }
+
+function onError(error){ //Verifica os erros do servidor
+    if(error.syscall !== 'listen'){
+        throw error;
+    }
+
+    const bind = typeof port === 'string' ?
+        'Pipe ' + port :
+        'Port ' + port;
+
+    switch (error.code) {
+        case 'EACCES' : //Erro de permissão
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE' : //Erro de endereço em uso
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
