@@ -22,6 +22,7 @@ const route = router.get('/',(req, res, next) => {
 app.use('/', route);
 
 server.listen(port);
+server.on('error', onError);
 console.log ('API rodando na porta ' + port);
 
 function normalizePort(val){
