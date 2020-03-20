@@ -1,25 +1,11 @@
-'use strict'
+const app = require ('../src/app');
+const debug = require('debug')('balta:server');
+const http = require('http');
 
-const http = require('http'); 
-const debug = require('debug')('nodestr:server'); 
-const express =  require('express'); 
-
-const app =  express();
 const port =  normalizePort(process.env.PORT || '3000'); //process.env.PORT é uma função do Microsoft Azure
 app.set('port', port);
 
 const server = http.createServer(app);
-const router = express.Router();
-
-const route = router.get('/',(req, res, next) => {
-    res.status(200).send({
-        title: "Node Store API",
-        version: "0.0.1"
-    });
-
-});
-
-app.use('/', route);
 
 server.listen(port);
 server.on('error', onError);
@@ -38,7 +24,9 @@ function normalizePort(val){
     }
 
     return false;
+
 }
+
 
 function onError(error){ //Verifica os erros do servidor
     if(error.syscall !== 'listen'){
